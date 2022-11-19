@@ -14,33 +14,14 @@ import json
     # - Релизовать отправку натроек через websocket (Возможно потребуется гуглить как добавить дополнительную задачу в asyncio):
         # -- При получении 03 пакета, а так же при обнаружении смещения времени
         # -- При необходимости изменить переодичность опроса датчиков
-
-## Debug instances
-with open('dump_1668240808.json', 'r') as f:
-    chirpstack_inlinometer = json.load(f)
-    
-with open('cfg/NameList.json', 'r') as f:
-    name_list = json.load(f)
-
-with open('cfg/DeviceList.json', 'r') as f:
-    device_list = json.load(f)
+    # - Можно реализовать отправку настроек реализацией метода check_time() который будет проверять время устройства прямо на входе,
+    # и сразу возвращать ответ при необходимости.
 
 # Classes
 class converter(object):
     def __init__(self, device_list, name_list) -> None:
-        self.device_list = device_list
-        self.name_list = name_list
-
-    def get_dev_type(self, dev_eui):
-        for i in self.device_list['devices']:
-            if i["devEui"] == dev_eui:
-                return i["type"]
-
-    def get_dev_name(self, dev_eui): # Web Name
-        for i in self.name_list['devices']:
-            if i["devEui"] == dev_eui:
-                return i["deviceName"]
-
+        pass        
+    
     def convert_to_chirpstack_json(self, vega_json):
         chirpstack_json = {}
         dev_eui = vega_json["devEui"]
@@ -99,29 +80,65 @@ class commands(object):
         return json.dumps(req)
 
 class ws_client(object):
-    def __init__(self, ws_address = '172.26.79.10', ws_port = '8082') -> None:
+    def __init__(self, device_list, ws_address = '172.26.79.10', ws_port = '8082') -> None:
         self.ws_address = ws_address
         self.ws_port = ws_port
+        self.api_dev_list = {}
+        self.device_list = device_list
+        self.messages_to_send = []
+        
+    def get_dev_type(self, dev_eui):
+        for i in self.device_list['devices']:
+            if i["devEui"] == dev_eui:
+                return i["type"]
+
+    def get_dev_name(self, dev_eui): # Web Name
+        for i in self.api_dev_list:
+            if i["devEui"] == dev_eui:
+                return i["devName"]
+    
+    async def check_messages(self):
+        if len(self.messages_to_send) > 0:
+            message = self.messages_to_send.pop()
+            await print(message)
+    
     async def event_loop(self):
         uri = f'ws://{self.ws_address}:{self.ws_port}/'
         connection = websockets.connect(uri)
         async with connection as websock:
             await websock.send(
-                commands.auth_req('root', '123')
+                commands.auth_req('root', '123') # auth #TODO: Pass as parameter
+            )
+            await websock.send(
+                commands.get_device_appdata_req() # Fill vega_api_device_list
             )
             async for message in websock:
-                print(message)
+                # print(message)
                 json_msg = json.loads(message)
+                self.messages_to_send.append("123")
+                if not self.api_dev_list and json_msg["cmd"] == "get_device_appdata_resp":
+                    raw_list = json.loads(message)
+                    self.api_dev_list = raw_list["devices_list"]
+                    print("api_dev_list has setted!")
                 if json_msg["cmd"] == "rx":
                     pass
             await websock.close()
 
     async def start_listening(self):
-        tasks = asyncio.create_task(self.event_loop())
+        tasks = []
+        tasks.append(asyncio.create_task(self.event_loop()))
+        tasks.append(asyncio.create_task(self.check_messages()))
         print("[*] Listen websocket...")
-        await tasks
+        await asyncio.wait(tasks)
 
 if __name__ == '__main__':
-    client = ws_client()
+    ## Debug instances
+    with open('dump_1668240808.json', 'r') as f:
+        chirpstack_inlinometer = json.load(f)
+
+    with open('cfg/DeviceList.json', 'r') as f:
+        device_list = json.load(f)
+    
+    client = ws_client(device_list)
     asyncio.run(client.start_listening())
     
