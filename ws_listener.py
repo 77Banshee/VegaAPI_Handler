@@ -1,7 +1,5 @@
 import websockets
 import asyncio
-import vega_api
-import time
 import json
 
 # Сейчас создав экземпляр класса ws_client и вызвав его метод start_listening() на asyncio.run() мы 
@@ -109,7 +107,7 @@ class ws_client(object):
         connection = websockets.connect(uri)
         async with connection as websock:
             await websock.send(
-                vega_api.Commands.auth_req('root', '123')
+                commands.auth_req('root', '123')
             )
             async for message in websock:
                 print(message)
