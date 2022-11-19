@@ -1,0 +1,15 @@
+{
+    "devEUI": "07293314051D22AA",
+    "applicationName": "Inclinometer",
+    "deviceName": "10209",
+    "rxInfo": [
+        {
+            "rssi": -99,
+            "loRaSNR": 4.2
+        }
+    ],
+    "txInfo": {},
+    "fCnt": 553,
+    "fPort": 60,
+    "data": "11636f8bb84367960041ed0800"
+}

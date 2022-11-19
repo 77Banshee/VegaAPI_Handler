@@ -1,0 +1,184 @@
+{
+    "devices": [
+        {
+            "devEui": "07293314051D009F",
+            "deviceName": "10191"
+        },
+        {
+            "devEui": "07293314051D00A5",
+            "deviceName": "10192"
+        },
+        {
+            "devEui": "07293314051D0779",
+            "deviceName": "10194"
+        },
+        {
+            "devEui": "07293314051D08E1",
+            "deviceName": "10195"
+        },
+        {
+            "devEui": "07293314051D0987",
+            "deviceName": "10196"
+        },
+        {
+            "devEui": "07293314051D09B6",
+            "deviceName": "10197"
+        },
+        {
+            "devEui": "07293314051D0F8C",
+            "deviceName": "10198"
+        },
+        {
+            "devEui": "07293314051D1287",
+            "deviceName": "10200"
+        },
+        {
+            "devEui": "07293314051D1721",
+            "deviceName": "10201"
+        },
+        {
+            "devEui": "07293314051D179D",
+            "deviceName": "10203"
+        },
+        {
+            "devEui": "07293314051D1EEF",
+            "deviceName": "10204"
+        },
+        {
+            "devEui": "07293314051D2020",
+            "deviceName": "10205"
+        },
+        {
+            "devEui": "07293314051D219B",
+            "deviceName": "10206"
+        },
+        {
+            "devEui": "07293314051D21BE",
+            "deviceName": "10207"
+        },
+        {
+            "devEui": "07293314051D22AA",
+            "deviceName": "10209"
+        },
+        {
+            "devEui": "07293314051D22F3",
+            "deviceName": "10211"
+        },
+        {
+            "devEui": "07293314051D2FAD",
+            "deviceName": "10212"
+        },
+        {
+            "devEui": "07293314051D33CF",
+            "deviceName": "10216"
+        },
+        {
+            "devEui": "07293314051D3B71",
+            "deviceName": "10220"
+        },
+        {
+            "devEui": "07293314051D424C",
+            "deviceName": "10223"
+        },
+        {
+            "devEui": "07293314051D4FD4",
+            "deviceName": "10226"
+        },
+        {
+            "devEui": "07293314051D5428",
+            "deviceName": "10229"
+        },
+        {
+            "devEui": "07293314051D5CCA",
+            "deviceName": "10235"
+        },
+        {
+            "devEui": "07293314051D6690",
+            "deviceName": "10239"
+        },
+        {
+            "devEui": "07293314051D6C4A",
+            "deviceName": "10242"
+        },
+        {
+            "devEui": "07293314051D72F1",
+            "deviceName": "10250"
+        },
+        {
+            "devEui": "07293314051D75ED",
+            "deviceName": "10257"
+        },
+        {
+            "devEui": "07293314051D7BFC",
+            "deviceName": "10261"
+        },
+        {
+            "devEui": "07293314051D8560",
+            "deviceName": "10264"
+        },
+        {
+            "devEui": "07293314051D8875",
+            "deviceName": "10269"
+        },
+        {
+            "devEui": "07293314051D98A2",
+            "deviceName": "10275"
+        },
+        {
+            "devEui": "07293314051D9DFE",
+            "deviceName": "10280"
+        },
+        {
+            "devEui": "07293314051DA903",
+            "deviceName": "10285"
+        },
+        {
+            "devEui": "07293314051DB188",
+            "deviceName": "10289"
+        },
+        {
+            "devEui": "07293314051DB5DB",
+            "deviceName": "10293"
+        },
+        {
+            "devEui": "07293314051DCEDE",
+            "deviceName": "10305"
+        },
+        {
+            "devEui": "07293314051DCFFC",
+            "deviceName": "10308"
+        },
+        {
+            "devEui": "07293314051E0BDF",
+            "deviceName": "1211"
+        },
+        {
+            "devEui": "07293314051E21FF",
+            "deviceName": "1213"
+        },
+        {
+            "devEui": "07293314051E2213",
+            "deviceName": "1214"
+        },
+        {
+            "devEui": "07293314051E2398",
+            "deviceName": "1215"
+        },
+        {
+            "devEui": "07293314051E2EAA",
+            "deviceName": "1218"
+        },
+        {
+            "devEui": "07293314051E3723",
+            "deviceName": "1220"
+        },
+        {
+            "devEui": "07293314051E3F10",
+            "deviceName": "1221"
+        },
+        {
+            "devEui": "07293314051E6D1B",
+            "deviceName": "1224"
+        }
+    ]
+}

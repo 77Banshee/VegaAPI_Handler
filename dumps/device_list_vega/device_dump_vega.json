@@ -1,0 +1,536 @@
+{
+    "cmd": "get_device_appdata_resp",
+    "devices_list": [
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D009F",
+            "devName": "10191"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D00A5",
+            "devName": "10192"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D0779",
+            "devName": "10194"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D08E1",
+            "devName": "10195"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D0987",
+            "devName": "10196"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D09B6",
+            "devName": "10197"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D0F8C",
+            "devName": "10198"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D1287",
+            "devName": "10200"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D1721",
+            "devName": "10201"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D179D",
+            "devName": "10203"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D1EEF",
+            "devName": "10204"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D2020",
+            "devName": "10205"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D219B",
+            "devName": "10206"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D21BE",
+            "devName": "10207"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D22AA",
+            "devName": "10209"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D22F3",
+            "devName": "10211"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D2FAD",
+            "devName": "10212"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D3106",
+            "devName": "10214"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D335A",
+            "devName": "10215"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D33CF",
+            "devName": "10216"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D36A9",
+            "devName": "10217"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D3939",
+            "devName": "10218"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D3B71",
+            "devName": "10220"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D4104",
+            "devName": "10221"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D411E",
+            "devName": "10222"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D424C",
+            "devName": "10223"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D4431",
+            "devName": "10224"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D4E5E",
+            "devName": "10225"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D4FD4",
+            "devName": "10226"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D505A",
+            "devName": "10227"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D5127",
+            "devName": "10228"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D5428",
+            "devName": "10229"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D5783",
+            "devName": "10232"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D5857",
+            "devName": "10233"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D5CCA",
+            "devName": "10235"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D5EDC",
+            "devName": "10236"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D60B8",
+            "devName": "10238"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D6690",
+            "devName": "10239"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D6B42",
+            "devName": "10240"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D6B97",
+            "devName": "10241"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D6C4A",
+            "devName": "10242"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D6F9F",
+            "devName": "10245"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D6FE3",
+            "devName": "10249"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D72F1",
+            "devName": "10250"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D7382",
+            "devName": "10251"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D754E",
+            "devName": "10252"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D75ED",
+            "devName": "10257"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D778B",
+            "devName": "10259"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D7BD3",
+            "devName": "10260"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D7BFC",
+            "devName": "10261"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D80D5",
+            "devName": "10262"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D8306",
+            "devName": "10263"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D8560",
+            "devName": "10264"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D8661",
+            "devName": "10266"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D86C1",
+            "devName": "10268"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D8875",
+            "devName": "10269"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D8A3F",
+            "devName": "10270"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D8E94",
+            "devName": "10272"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D98A2",
+            "devName": "10275"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D9C96",
+            "devName": "10276"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D9DA4",
+            "devName": "10278"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051D9DFE",
+            "devName": "10280"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DA094",
+            "devName": "10281"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DA1EC",
+            "devName": "10282"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DA903",
+            "devName": "10285"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DAE28",
+            "devName": "10286"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DB0AF",
+            "devName": "10288"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DB188",
+            "devName": "10289"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DB230",
+            "devName": "10291"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DB50E",
+            "devName": "10292"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DB5DB",
+            "devName": "10293"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DB9A5",
+            "devName": "10294"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DBB8A",
+            "devName": "10295"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DBDFE",
+            "devName": "10296"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DC03D",
+            "devName": "10297"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DC072",
+            "devName": "10298"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DC224",
+            "devName": "10299"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DC57A",
+            "devName": "10300"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DC6C5",
+            "devName": "10301"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DC7EF",
+            "devName": "10302"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DCDEE",
+            "devName": "10303"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DCE81",
+            "devName": "10304"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DCEDE",
+            "devName": "10305"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DCF31",
+            "devName": "10306"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DCF7C",
+            "devName": "10307"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DCFFC",
+            "devName": "10308"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DD210",
+            "devName": "10309"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DD3A9",
+            "devName": "10310"
+        },
+        {
+            "appEui": "C3E1B3F24039C364",
+            "devEui": "07293314051DD463",
+            "devName": "10311"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E03AD",
+            "devName": "1210"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E0BDF",
+            "devName": "1211"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E1B02",
+            "devName": "1212"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E21FF",
+            "devName": "1213"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E2213",
+            "devName": "1214"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E2398",
+            "devName": "1215"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E256F",
+            "devName": "1216"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E278D",
+            "devName": "1217"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E2EAA",
+            "devName": "1218"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E35B3",
+            "devName": "1219"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E3723",
+            "devName": "1220"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E3F10",
+            "devName": "1221"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E59F2",
+            "devName": "1222"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E6628",
+            "devName": "1223"
+        },
+        {
+            "appEui": "8FEB99EC294604F0",
+            "devEui": "07293314051E6D1B",
+            "devName": "1224"
+        },
+        {
+            "appEui": "",
+            "devEui": "07293314052D18F2",
+            "devName": "Inc_0001"
+        },
+        {
+            "appEui": "",
+            "devEui": "313330346E307713",
+            "devName": "Tester"
+        }
+    ],
+    "status": true
+}
