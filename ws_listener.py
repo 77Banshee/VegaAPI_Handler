@@ -1,6 +1,8 @@
 import websockets
 import asyncio
 import json
+import base64
+from textwrap import wrap
 
 # Сейчас создав экземпляр класса ws_client и вызвав его метод start_listening() на asyncio.run() мы 
 # мы получаем все сообщения которые отправляет веб сокет.
@@ -8,36 +10,21 @@ import json
 # Необходимо конвертировать приходящие rx сообщения в формат chirpstack и отправить на MQTT брокер, на который мы подписаны 
 # в главном потоке.
 
-#TODO:
-    # - Изучить MES_server и постораться без рефакторинга выключить функции чирпстека или же заменить этим модулем, если
+# - Изучить MES_server и постораться без рефакторинга выключить функции чирпстека или же заменить этим модулем, если
     # это не повредит основной программе.
     # - Релизовать отправку натроек через websocket (Возможно потребуется гуглить как добавить дополнительную задачу в asyncio):
+    # Так же можно настроить подписку на топики /command/down
         # -- При получении 03 пакета, а так же при обнаружении смещения времени
         # -- При необходимости изменить переодичность опроса датчиков
     # - Можно реализовать отправку настроек реализацией метода check_time() который будет проверять время устройства прямо на входе,
     # и сразу возвращать ответ при необходимости.
+    # Написать дополнительный конвертер для старой версии термокос
+
+#TODO:
+    # Поднять MQTT сервер.
+    # Добавить 
 
 # Classes
-class converter(object):
-    def __init__(self, device_list, name_list) -> None:
-        pass        
-    
-    def convert_to_chirpstack_json(self, vega_json):
-        chirpstack_json = {}
-        dev_eui = vega_json["devEui"]
-        chirpstack_json['devEUI'] = dev_eui
-        chirpstack_json["applicationName"] = self.get_dev_type(dev_eui)
-        chirpstack_json["deviceName"] = self.get_dev_name(dev_eui)
-        chirpstack_json['rxInfo']  = []
-        chirpstack_json['rxInfo'].append(
-            {"rssi": vega_json['rssi'], "loRaSNR": vega_json["snr"]}
-        )
-        chirpstack_json['txInfo'] = {}
-        chirpstack_json['fCnt'] = vega_json["fcnt"]
-        chirpstack_json['fPort'] = vega_json["port"]
-        chirpstack_json['data'] = vega_json["data"]
-
-        return chirpstack_json
 
 class commands(object):
     def server_info_req():
@@ -72,20 +59,30 @@ class commands(object):
     def send_data_req(dev_eui, data, port = 60, ack = False):
         req = {}
         req["cmd"] = "send_data_req"
-        # req["data_list"] = {}
-        req["data_list"]["devEui"] = dev_eui
-        req["data_list"]["data"] = data
-        req["data_list"]["port"] = port
-        req["data_dist"]["ack"] = ack
+        req["data_list"] = []
+        req["data_list"].append(
+            {
+                "devEui" : dev_eui,
+                "data" : data,
+                "port" : port,
+                "ack" : ack
+            }
+        )
         return json.dumps(req)
 
 class ws_client(object):
     def __init__(self, device_list, ws_address = '172.26.79.10', ws_port = '8082') -> None:
         self.ws_address = ws_address
         self.ws_port = ws_port
+        self.uri = f'ws://{self.ws_address}:{self.ws_port}/'
         self.api_dev_list = {}
         self.device_list = device_list
-        self.messages_to_send = []
+        self.tasks = []
+        
+    def hex_string_to_b64_bytes(self, hex_string):
+        return base64.b64encode(
+                bytes.fromhex(hex_string)
+            ).decode('ascii')
         
     def get_dev_type(self, dev_eui):
         for i in self.device_list['devices']:
@@ -97,14 +94,46 @@ class ws_client(object):
             if i["devEui"] == dev_eui:
                 return i["devName"]
     
-    async def check_messages(self):
-        if len(self.messages_to_send) > 0:
-            message = self.messages_to_send.pop()
-            await print(message)
+    def convert_to_chirpstack_json(self, vega_json):
+        chirpstack_json = {}
+        dev_eui = vega_json["devEui"]
+        chirpstack_json['devEUI'] = self.hex_string_to_b64_bytes(dev_eui)
+        chirpstack_json["applicationName"] = self.get_dev_type(dev_eui)
+        chirpstack_json["deviceName"] = self.get_dev_name(dev_eui)
+        chirpstack_json['rxInfo']  = []
+        chirpstack_json['rxInfo'].append(
+            {"rssi": vega_json['rssi'], "loRaSNR": vega_json["snr"]}
+        )
+        chirpstack_json['txInfo'] = {}
+        chirpstack_json['fCnt'] = vega_json["fcnt"]
+        chirpstack_json['fPort'] = vega_json["port"]
+        chirpstack_json['data'] = self.hex_string_to_b64_bytes(
+            vega_json["data"]
+        )
+
+        return chirpstack_json
+    
+    async def TEST_SEND_SETTINGS(self, message):
+        # Message example
+        # message = commands.send_data_req("07293314051D009F", base64.b64encode(b'\x03').decode('ascii'))
+        
+        # Add message example
+        # self.tasks.append(asyncio.create_task(self.send_test_settings(command)))
+        
+        con2 = websockets.connect(self.uri)
+        async with con2 as ws:
+            await ws.send(
+                commands.auth_req('root', '123') # auth #TODO: Pass as parameter
+            )
+            await ws.send(
+                message
+            )
+            print("ws MESSAGE SENT!")
+            async for message in ws:
+               await print("ws: " + message)
     
     async def event_loop(self):
-        uri = f'ws://{self.ws_address}:{self.ws_port}/'
-        connection = websockets.connect(uri)
+        connection = websockets.connect(self.uri)
         async with connection as websock:
             await websock.send(
                 commands.auth_req('root', '123') # auth #TODO: Pass as parameter
@@ -115,21 +144,24 @@ class ws_client(object):
             async for message in websock:
                 # print(message)
                 json_msg = json.loads(message)
-                self.messages_to_send.append("123")
+                # self.tasks.append(asyncio.create_task(self.printmessage(self.counter)))
                 if not self.api_dev_list and json_msg["cmd"] == "get_device_appdata_resp":
                     raw_list = json.loads(message)
                     self.api_dev_list = raw_list["devices_list"]
                     print("api_dev_list has setted!")
-                if json_msg["cmd"] == "rx":
+                if json_msg["cmd"] == "rx" and json_msg["type"] == "CONF_UP":
+                    print()
+                    print(json_msg)
+                    print()
+                    print(self.convert_to_chirpstack_json(json_msg))
+                    # Push to mqtt
                     pass
             await websock.close()
 
     async def start_listening(self):
-        tasks = []
-        tasks.append(asyncio.create_task(self.event_loop()))
-        tasks.append(asyncio.create_task(self.check_messages()))
+        self.tasks.append(asyncio.create_task(self.event_loop()))
         print("[*] Listen websocket...")
-        await asyncio.wait(tasks)
+        await asyncio.wait(self.tasks)
 
 if __name__ == '__main__':
     ## Debug instances
