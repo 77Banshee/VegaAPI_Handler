@@ -3,6 +3,8 @@ import asyncio
 import json
 import base64
 from textwrap import wrap
+import queue
+import MES_firmware_patch
 
 # Сейчас создав экземпляр класса ws_client и вызвав его метод start_listening() на asyncio.run() мы 
 # мы получаем все сообщения которые отправляет веб сокет.
@@ -71,13 +73,23 @@ class commands(object):
         return json.dumps(req)
 
 class ws_client(object):
-    def __init__(self, device_list, ws_address = '172.26.79.10', ws_port = '8082') -> None:
+    def __init__(self, device_list, tk_config, ws_address = '172.26.79.10', ws_port = '8082') -> None:
         self.ws_address = ws_address
         self.ws_port = ws_port
         self.uri = f'ws://{self.ws_address}:{self.ws_port}/'
         self.api_dev_list = {}
         self.device_list = device_list
         self.tasks = []
+        self.send_queue = queue.Queue()
+        self.tk_config = tk_config
+        
+    def get_tk_quantity(self, dev_eui):
+        dev_eui = dev_eui.upper()
+        for i in self.tk_config["TK"]:
+            if i["devEUI"] == dev_eui:
+                return i["Quantity"]
+        print(f"[*] ERROR! QUANTITY FOR {dev_eui} NOT FOUND IN TK CONFIG!")
+        raise ValueError("Tk not found in tk_config!")
         
     def hex_string_to_b64_bytes(self, hex_string):
         return base64.b64encode(
@@ -128,9 +140,10 @@ class ws_client(object):
             await ws.send(
                 message
             )
-            print("ws MESSAGE SENT!")
+            print("[*] DEBUG | WS Send settings: MESSAGE SENT!")
             async for message in ws:
                await print("ws: " + message)
+            print("[*] Debug | WS Send settings: CONNECTION CLOSED!")
     
     async def event_loop(self):
         connection = websockets.connect(self.uri)
@@ -150,13 +163,29 @@ class ws_client(object):
                     self.api_dev_list = raw_list["devices_list"]
                     print("api_dev_list has setted!")
                 if json_msg["cmd"] == "rx" and json_msg["type"] == "CONF_UP":
-                    print()
                     print(json_msg)
-                    print()
+                    payload = json_msg['data']
+                    match payload[:2]:
+                        case "05":
+                            print(f"json_msg['data'] : {payload}")
+                            if len(payload) != 46:
+                                thermometer_divided = MES_firmware_patch.divide_thermometer_data(payload)
+                                print(f"[*] DEBUG: TK Before:\n\t {payload}")
+                                print(f"AFTER:")
+                                for i in thermometer_divided:
+                                    print(f"\t{i}")
+                                    self.send_queue.put(i)
+                            else:
+                                print(f"WTF THERMOMETER DATA NOT OLD VERSION? {payload} | LEN: {len(payload)}")
+                        case "11":
+                            self.send_queue.put(self.convert_to_chirpstack_json(json_msg))
+                        case "03":
+                            pass
                     print(self.convert_to_chirpstack_json(json_msg))
-                    # Push to mqtt
-                    pass
-            await websock.close()
+                    for i in range(self.send_queue.qsize()):
+                        json_to_send =  self.send_queue.get()
+                        # PUSH json_to_send TO MQTT
+                        # which topic? application/00/device/{vega_json["devEui"].lower()}/event/up
 
     async def start_listening(self):
         self.tasks.append(asyncio.create_task(self.event_loop()))
@@ -164,13 +193,12 @@ class ws_client(object):
         await asyncio.wait(self.tasks)
 
 if __name__ == '__main__':
-    ## Debug instances
-    with open('dump_1668240808.json', 'r') as f:
-        chirpstack_inlinometer = json.load(f)
-
     with open('cfg/DeviceList.json', 'r') as f:
         device_list = json.load(f)
     
-    client = ws_client(device_list)
+    with open('cfg/TkConfig.json', 'r') as f:
+        tk_config = json.load(f)
+    
+    client = ws_client(device_list, tk_config)
     asyncio.run(client.start_listening())
     
