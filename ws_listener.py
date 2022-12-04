@@ -86,7 +86,7 @@ class ws_client(object):
     def get_tk_quantity(self, dev_eui):
         dev_eui = dev_eui.upper()
         for i in self.tk_config["TK"]:
-            if i["devEUI"] == dev_eui:
+            if i["DevEUI"] == dev_eui:
                 return i["Quantity"]
         print(f"[*] ERROR! QUANTITY FOR {dev_eui} NOT FOUND IN TK CONFIG!")
         raise ValueError("Tk not found in tk_config!")
@@ -165,11 +165,17 @@ class ws_client(object):
                 if json_msg["cmd"] == "rx" and json_msg["type"] == "CONF_UP":
                     print(json_msg)
                     payload = json_msg['data']
+                    target_dev_eui = json_msg['devEui']
                     match payload[:2]:
                         case "05":
                             print(f"json_msg['data'] : {payload}")
                             if len(payload) != 46:
-                                thermometer_divided = MES_firmware_patch.divide_thermometer_data(payload)
+                                thermometer_divided = MES_firmware_patch.divide_thermometer_data(
+                                    str_hex_data=payload, 
+                                    quantity=self.get_tk_quantity(
+                                        dev_eui=target_dev_eui
+                                    )
+                                )
                                 print(f"[*] DEBUG: TK Before:\n\t {payload}")
                                 print(f"AFTER:")
                                 for i in thermometer_divided:

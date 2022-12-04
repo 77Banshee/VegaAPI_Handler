@@ -925,18 +925,6 @@
             "Quantity": 15
         },
         {
-            "DevEUI": "07293314052DA030",
-            "Quantity": 15
-        },
-        {
-            "DevEUI": "07293314052D605E",
-            "Quantity": 18
-        },
-        {
-            "DevEUI": "0729331405555555",
-            "Quantity": 13
-        },
-        {
             "DevEUI": "07293314051E2213",
             "Quantity": 17
         },
@@ -967,6 +955,30 @@
         {
             "DevEUI": "07293314051E3F10",
             "Quantity": 18
+        },
+        {
+            "DevEUI": "07293314052DA030",
+            "Quantity": 15
+        },
+        {
+            "DevEUI": "07293314052D605E",
+            "Quantity": 18
+        },
+        {
+            "DevEUI": "0729331405555555",
+            "Quantity": 13
+        },
+        {
+            "DevEUI": "07293314051E256F",
+            "Quantity": 17
+        },
+        {
+            "DevEUI": "07293314051E35B3",
+            "Quantity": 18
+        },
+        {
+            "DevEUI": "07293314051E1B02",
+            "Quantity": 17
         }
     ]
 }
